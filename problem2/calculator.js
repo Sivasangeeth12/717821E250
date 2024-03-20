@@ -80,35 +80,50 @@ app.get('/random', (req, res) => {
 app.get('/numbers/:id', async (req, res) => {
     const name = req.params.id;
     // console.log(name)
-
+    let array = []
     if(name == 'e')
     {
     const length = 10;
     const evenNumbers = EvenNumbers(length);
-    res.json({ numbers: evenNumbers });
+    array = evenNumbers
+    // res.json({ numbers: evenNumbers });
     }
     else if(name == 'f')
     {
         const length = 10; 
     const fibonacci = FibonacciNumbers(length);
-    res.json({ numbers: fibonacci });
+    array = fibonacci
+    // res.json({ numbers: fibonacci });
     }
     else if(name == 'r')
     {
         const length = 10;
         const randomNumbers = RandomNumbers(length);
-        res.json({ numbers: randomNumbers });
+        array = randomNumbers
+        // res.json({ numbers: randomNumbers });
     }
     else if(name == 'p')
     {
         const length = 10;
         const primes = PrimeNumbers(length);
-        res.json({ numbers: primes });
+        array = primes
+        // res.json({ numbers: primes });
     }
-   
+   res.json({windowsPrevState : [],
+    windowsCurrState : array,
+    numbers : array,
+    avg : calcAvg(array)
+})
 
 });
 
+function calcAvg(array)
+{
+    let sum = 0;
+    for(let i=0;i<array.length;i++)
+        sum += array[i];
+    return sum/array.length
+}
 
 
 

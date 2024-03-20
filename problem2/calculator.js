@@ -112,7 +112,7 @@ app.get('/numbers/:id', async (req, res) => {
    res.json({windowsPrevState : [],
     windowsCurrState : array,
     numbers : array,
-    avg : calcAvg(array)
+    avg : parseFloat(calcAvg(array))
 })
 
 });
@@ -122,7 +122,7 @@ function calcAvg(array)
     let sum = 0;
     for(let i=0;i<array.length;i++)
         sum += array[i];
-    return sum/array.length
+    return (sum/array.length)*1.0
 }
 
 
